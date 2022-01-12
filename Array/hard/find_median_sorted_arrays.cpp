@@ -13,3 +13,28 @@ public:
     }
 };
 
+/*Solution:  Runtime: 28 ms, Memory Usage: 89.3 MB. */
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2)
+    {
+        int i = 0, j = 0, last = 0, current = 0, n = nums1.size(), m = nums2.size(), q = m + n;
+        while (i < n || j < m)
+        {
+            if (i == n)
+                current = nums2[j++];
+            else if (j == m)
+                current = nums1[i++];
+            else if (nums1[i] > nums2[j])
+                current = nums2[j++];
+            else
+                current = nums1[i++];
+
+            if (i + j > q / 2)
+                break;
+            last = current;
+        }
+
+        return q % 2? current: (last + current) / 2.0;
+    }
+};
