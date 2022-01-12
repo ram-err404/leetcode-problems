@@ -1,3 +1,5 @@
+
+/*Solution: Runtime: 16 ms, Memory: 8.3 MB*/
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
@@ -15,5 +17,41 @@ public:
         }
         
         return max_val;
+    }
+};
+
+/*Another Solution: Runtime: 9 ms, Memory6.9 MB*/
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int len = s.length();
+        if (len < 2) return len; //Trivial cases
+        int begin = 0; //Start of max length nonrepeating substring
+        int end = 0; //End of max length nonrepeating substring
+        int max = 1; //Max length of nonrepeating substring
+
+        //Direct-address table with keys of all ASCII characters
+        //first[c] = index of first appearance of the character c
+        int first[256] = {[0 ... 255] = -1};
+
+        while (end < len && len - begin > max){
+            int ascii = int(s[end]); //Convert the end character to ASCII code
+
+            //If s[end] is found in first, it means there's a repeating
+            //character, so update the begin pointer to the character after
+            //first[ascii]
+            if (first[ascii] >= begin){
+                begin = first[ascii] + 1;
+            }
+            //Update the direct-address table with the rightmost appearance of
+            //the char s[end]
+            first[ascii] = end;
+
+            end++;
+            int diff = end - begin;
+            if (diff > max) max = diff; //Get the maximum distance between end and begin
+
+        }
+        return max;
     }
 };
