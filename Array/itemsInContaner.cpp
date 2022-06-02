@@ -42,7 +42,7 @@ int main()
     cout << res[i] << " ";
 }
 
-// More accurate and optimised solution.
+// More accurate and optimised solution. O(n) Solution.
 public
 List<Integer> numberOfItems(String s, List<Integer> startIndices, List<Integer> endIndices)
 {
