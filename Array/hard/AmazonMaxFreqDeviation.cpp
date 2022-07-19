@@ -75,16 +75,16 @@ int getMaxFreqDeviation(string s)
 
 int main()
 {
-  ofstream fout(getenv("OUTPUT_PATH"));
+  // ofstream fout(getenv("OUTPUT_PATH"));
 
-  string s;
-  getline(cin, s);
+  string s="aababbb";
+  // getline(cin, s);
 
   int result = getMaxFreqDeviation(s);
+  cout<< result <<endl;
+  // fout << result << "\n";
 
-  fout << result << "\n";
-
-  fout.close();
+  // fout.close();
 
   return 0;
 }
