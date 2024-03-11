@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+
 using namespace std;
 
 vector<int> noOfitems(string s, vector<int>& start, vector<int>& end) {
@@ -6,13 +9,13 @@ vector<int> noOfitems(string s, vector<int>& start, vector<int>& end) {
     int size = start.size();
     int count = 0;
     int count_closed = 0;
-    int open = 0;
+    bool open = false;
 
     for (int i = 0; i < size; i++) {
         count = 0; count_closed = 0;
         for (int j = start[i]; j < end[i]; j++) {
             if (!open && s[j] == '|')
-                open = 1;
+                open = true;
             else if (open && s[j] == '*')
                 count++;
             else if (open && s[j] == '|') {
